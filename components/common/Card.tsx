@@ -1,12 +1,15 @@
 import { CardProps } from "../../interfaces";
+import Image from "next/image";
 
 const Card: React.FC<CardProps> = ({ title, description, image }) => {
   return (
     <div className="border rounded-xl shadow-md p-4 bg-white max-w-sm">
       {image && (
-        <img
+        <Image
           src={image}
           alt={title}
+          width={400}
+          height={160}
           className="w-full h-40 object-cover rounded-md mb-3"
         />
       )}

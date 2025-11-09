@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { getApiUrl } from "@/utils/api";
 
 interface FormData {
   firstName: string;
@@ -41,7 +42,7 @@ export default function BookingForm() {
     setError(null);
 
     try {
-      const response = await axios.post("/api/bookings", formData);
+      const response = await axios.post(getApiUrl("/api/bookings"), formData);
       alert("Booking confirmed!");
       console.log("Booking response:", response.data);
     } catch (error) {

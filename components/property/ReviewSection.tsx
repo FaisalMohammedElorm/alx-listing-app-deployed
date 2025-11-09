@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { getApiUrl } from "@/utils/api";
 
 interface Review {
   id: number;
@@ -25,7 +26,7 @@ const ReviewSection = ({ propertyId }: ReviewSectionProps) => {
       try {
         setLoading(true);
         setError(null);
-        const response = await axios.get(`/api/properties/${propertyId}/reviews`);
+        const response = await axios.get(getApiUrl(`/api/properties/${propertyId}/reviews`));
         setReviews(response.data);
       } catch (error) {
         console.error("Error fetching reviews:", error);

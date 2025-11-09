@@ -3,6 +3,7 @@ import axios from "axios";
 import Pill from "@/components/Pill";
 import PropertyCard from "@/components/property/PropertyCard";
 import { PropertyProps } from "@/interfaces";
+import { getApiUrl } from "@/utils/api";
 
 export default function Home() {
   const filters = [
@@ -20,7 +21,7 @@ export default function Home() {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await axios.get("/api/properties");
+        const response = await axios.get(getApiUrl("/api/properties"));
         setProperties(response.data);
       } catch (err) {
         console.error("Error fetching properties:", err);

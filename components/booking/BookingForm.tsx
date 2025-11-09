@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { getApiUrl } from "@/utils/api";
 
 interface FormData {
   firstName: string;
@@ -51,7 +52,7 @@ const BookingForm = () => {
     setSuccess(null);
 
     try {
-      const response = await axios.post("/api/bookings", formData);
+      const response = await axios.post(getApiUrl("/api/bookings"), formData);
       setSuccess(`Booking confirmed! Confirmation number: ${response.data.bookingDetails.confirmationNumber}`);
       
       // Reset form after successful submission

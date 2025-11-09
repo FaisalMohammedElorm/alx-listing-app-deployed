@@ -1,12 +1,27 @@
 import React from "react";
+import Image from "next/image";
 
-const OrderSummary: React.FC<{ bookingDetails: any }> = ({ bookingDetails }) => (
+interface BookingDetails {
+  propertyName?: string;
+  location?: string;
+  checkIn?: string;
+  checkOut?: string;
+  startDate?: string;
+  totalNights?: number;
+  guests?: number;
+  price?: number;
+  bookingFee?: number;
+}
+
+const OrderSummary: React.FC<{ bookingDetails: BookingDetails }> = ({ bookingDetails }) => (
   <div className="bg-white p-6 shadow-md rounded-lg">
     <h2 className="text-xl font-semibold">Review Order Details</h2>
     <div className="flex flex-col sm:flex-row items-center mt-4">
-      <img
+      <Image
         src="https://example.com/property.jpg"
         alt="Property"
+        width={128}
+        height={128}
         className="w-32 h-32 object-cover rounded-md"
       />
       <div className="sm:ml-4 mt-3 sm:mt-0 text-center sm:text-left">
@@ -22,15 +37,15 @@ const OrderSummary: React.FC<{ bookingDetails: any }> = ({ bookingDetails }) => 
     <div className="mt-6">
       <div className="flex justify-between">
         <p>Booking Fee</p>
-        <p>${bookingDetails.bookingFee}</p>
+        <p>${bookingDetails.bookingFee || 0}</p>
       </div>
       <div className="flex justify-between mt-2">
         <p>Subtotal</p>
-        <p>${bookingDetails.price}</p>
+        <p>${bookingDetails.price || 0}</p>
       </div>
       <div className="flex justify-between mt-2 font-semibold">
         <p>Grand Total</p>
-        <p>${bookingDetails.bookingFee + bookingDetails.price}</p>
+        <p>${(bookingDetails.bookingFee || 0) + (bookingDetails.price || 0)}</p>
       </div>
     </div>
   </div>

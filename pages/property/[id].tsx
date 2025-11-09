@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import PropertyDetail from "@/components/property/PropertyDetail";
 import { PropertyProps } from "@/interfaces";
+import { getApiUrl } from "@/utils/api";
 
 export default function PropertyDetailPage() {
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function PropertyDetailPage() {
       try {
         setLoading(true);
         setError(null);
-        const response = await axios.get(`/api/properties/${id}`);
+        const response = await axios.get(getApiUrl(`/api/properties/${id}`));
         setProperty(response.data);
       } catch (error) {
         console.error("Error fetching property details:", error);
